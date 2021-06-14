@@ -21,7 +21,7 @@ namespace jsonparser {
 
 	JsonTypes* JsonArray::get(int index) {
 		return _array[index];
-	};
+	}
 
 	void JsonArray::add(JsonTypes* jsonType) {
 		_array.push_back(jsonType);
@@ -97,24 +97,28 @@ namespace jsonparser {
 	}
 
 	bool JsonObject::contains(string* key) {
-		return false;
+		return _map.find(*key) != _map.end();
 	}
 
 	JsonTypes* JsonObject::get(string* key) {
-		return nullptr;
+		return _map[*key];
 	}
 
 	void JsonObject::set(string* key, JsonTypes* type) {
-
+		_map[*key] = type;
 	}
 
 	std::set<string> JsonObject::getKeys() {
-		return std::set<string>();
+		std::set<string> keys;
+		for (auto& p : _map) {
+			keys.insert(p.first);
+		}
+		return keys;
 	}
 
 	// JsonString impl
-	JsonString::JsonString(string value) {
-		_value = value;
+	JsonString::JsonString(string* value) {
+		_value = *value;
 	}
 
 	string JsonString::serialize(int indent) {

@@ -99,7 +99,7 @@ namespace jsonparser {
 	private:
 		string _value;
 	public:
-		explicit JsonString(string value);
+		explicit JsonString(string* value);
 		string serialize(int indent) override;
 		JsonString* getStringValue() override;
 
