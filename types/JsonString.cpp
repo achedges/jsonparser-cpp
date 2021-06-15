@@ -15,7 +15,7 @@ namespace jsonparser {
 	}
 
 	string JsonString::serialize(int indent) {
-		return _value;
+		return '"' + _value + '"';
 	}
 
 	JsonString* JsonString::getStringValue() {

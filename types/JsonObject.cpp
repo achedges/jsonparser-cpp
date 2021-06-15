@@ -7,7 +7,27 @@
 namespace jsonparser {
 
 	string JsonObject::serialize(int indent) {
-		return "-object-";
+		string objectString = "{ ";
+		if (indent > 0) {
+			objectString += '\n';
+		}
+
+		string tab = indent > 0 ? string(indent, '\t') : "";
+		size_t _size = getSize();
+		for (auto & entry : _map) {
+			objectString += tab + "\"" + entry.first + "\": " + entry.second->serialize(indent > 0 ? indent + 1 : 0);
+			if ((--_size) > 0) {
+				objectString += ", ";
+			}
+			if (indent > 0) {
+				objectString += '\n';
+			}
+		}
+
+		objectString += indent > 0 ? tab.substr(0, indent - 1) : " ";
+		objectString += "}";
+
+		return objectString;
 	}
 
 	JsonObject* JsonObject::getObjectValue() {
@@ -28,6 +48,10 @@ namespace jsonparser {
 
 	void JsonObject::set(string* key, JsonTypes* type) {
 		_map[*key] = type;
+	}
+
+	void JsonObject::set(const string & key, JsonTypes* type) {
+		_map[key] = type;
 	}
 
 	std::set<string> JsonObject::getKeys() {

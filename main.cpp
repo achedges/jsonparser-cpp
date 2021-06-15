@@ -48,6 +48,22 @@ int main() {
 	auto jsonObj = new JsonObject();
 	auto jsonStr = new JsonString("test serializer");
 
+	// populate array
+	jsonArray->add(new JsonString("test array string 1"));
+	jsonArray->add(new JsonString("another test array string"));
+
+	//populate object
+	jsonObj->set("test-integer", new JsonInteger(123));
+	jsonObj->set("test-float", new JsonFloat(99.1));
+	jsonObj->set("test-string", new JsonString("some string value"));
+	jsonObj->set("test-array", jsonArray);
+
+	auto innerObj = new JsonObject();
+	innerObj->set("inner-key-1", new JsonBoolean(true));
+	innerObj->set("inner-key-2", new JsonNull());
+
+	jsonObj->set("inner-object", innerObj);
+
 	std::cout << jsonArray->serialize(0) << std::endl;
 	std::cout << jsonBool->serialize(0) << std::endl;
 	std::cout << jsonFloat->serialize(0) << std::endl;
