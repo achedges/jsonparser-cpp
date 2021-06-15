@@ -39,5 +39,22 @@ int main() {
 		cout << "  " << k << std::endl;
 	}
 
+	// test serializers
+	auto jsonArray = new JsonArray();
+	auto jsonBool = new JsonBoolean(true);
+	auto jsonFloat = new JsonFloat(12.34);
+	auto jsonInt = new JsonInteger(1234);
+	auto jsonNull = new JsonNull();
+	auto jsonObj = new JsonObject();
+	auto jsonStr = new JsonString("test serializer");
+
+	std::cout << jsonArray->serialize(0) << std::endl;
+	std::cout << jsonBool->serialize(0) << std::endl;
+	std::cout << jsonFloat->serialize(0) << std::endl;
+	std::cout << jsonInt->serialize(0) << std::endl;
+	std::cout << jsonNull->serialize(0) << std::endl;
+	std::cout << jsonObj->serialize(0) << std::endl;
+	std::cout << jsonStr->serialize(0) << std::endl;
+
 	return 0;
 }

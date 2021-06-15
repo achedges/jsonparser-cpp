@@ -100,6 +100,7 @@ namespace jsonparser {
 		string _value;
 	public:
 		explicit JsonString(string* value);
+		explicit JsonString(const string & value);
 		string serialize(int indent) override;
 		JsonString* getStringValue() override;
 
