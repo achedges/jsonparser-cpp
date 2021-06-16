@@ -2,7 +2,7 @@
 // Created by Adam Hedges on 6/14/21.
 //
 
-#include "../JsonTypes.h"
+#include "JsonTypes.h"
 
 namespace jsonparser {
 
@@ -44,6 +44,10 @@ namespace jsonparser {
 
 	JsonTypes* JsonObject::get(string* key) {
 		return _map[*key];
+	}
+
+	JsonTypes* JsonObject::get(const string & key) {
+		return _map[key];
 	}
 
 	void JsonObject::set(string* key, JsonTypes* type) {

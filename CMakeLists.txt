@@ -3,9 +3,8 @@ project(jsonparser)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(jsonparser
-        main.cpp
-        JsonTypes.h
+add_library(jsonparser
+        types/JsonTypes.h
         types/JsonArray.cpp
         types/JsonBoolean.cpp
         types/JsonFloat.cpp
@@ -13,3 +12,9 @@ add_executable(jsonparser
         types/JsonNull.cpp
         types/JsonObject.cpp
         types/JsonString.cpp)
+
+link_libraries(jsonparser)
+
+add_executable(tests
+        jsonparser
+        tests/serializers.cpp)

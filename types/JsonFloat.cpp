@@ -2,7 +2,7 @@
 // Created by Adam Hedges on 6/14/21.
 //
 
-#include "../JsonTypes.h"
+#include "JsonTypes.h"
 
 namespace jsonparser {
 

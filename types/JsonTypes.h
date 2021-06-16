@@ -91,6 +91,7 @@ namespace jsonparser {
 		size_t getSize();
 		bool contains(string* key);
 		JsonTypes* get(string* key);
+		JsonTypes* get(const string & key);
 		void set(string* key, JsonTypes* type);
 		void set(const string & key, JsonTypes* type);
 		std::set<string> getKeys();
