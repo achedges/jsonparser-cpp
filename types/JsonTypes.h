@@ -37,9 +37,9 @@ namespace jsonparser {
 	};
 
 	class JsonArray : public JsonTypes {
-	private:
-		vector<JsonTypes*> _array;
 	public:
+		vector<JsonTypes*> array;
+
 		string serialize(int indent) override;
 		JsonArray* getArrayValue() override;
 		size_t getSize();
@@ -48,18 +48,18 @@ namespace jsonparser {
 	};
 
 	class JsonBoolean : public JsonTypes {
-	private:
-		bool _value;
 	public:
+		bool value;
+
 		explicit JsonBoolean(bool value);
 		string serialize(int indent) override;
 		JsonBoolean* getBoolValue() override;
 	};
 
 	class JsonFloat : public JsonTypes {
-	private:
-		double _value;
 	public:
+		double value;
+
 		explicit JsonFloat(double value);
 		string serialize(int indent) override;
 		JsonFloat* getFloatValue() override;
@@ -67,9 +67,9 @@ namespace jsonparser {
 	};
 
 	class JsonInteger : public JsonTypes {
-	private:
-		int _value;
 	public:
+		int value;
+
 		explicit JsonInteger(int value);
 		string serialize(int indent) override;
 		JsonFloat* getFloatValue() override;
@@ -83,9 +83,9 @@ namespace jsonparser {
 	};
 
 	class JsonObject : public JsonTypes {
-	private:
-		std::map<string, JsonTypes*> _map;
 	public:
+		std::map<string, JsonTypes*> map;
+
 		string serialize(int indent) override;
 		JsonObject* getObjectValue() override;
 		size_t getSize();
@@ -98,14 +98,12 @@ namespace jsonparser {
 	};
 
 	class JsonString : public JsonTypes {
-	private:
-		string _value;
 	public:
+		string value;
 		explicit JsonString(string* value);
 		explicit JsonString(const string & value);
 		string serialize(int indent) override;
 		JsonString* getStringValue() override;
-
 	};
 
 }

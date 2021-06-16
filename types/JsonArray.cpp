@@ -14,7 +14,7 @@ namespace jsonparser {
 
 		string tab = indent > 0 ? string(indent, '\t') : "";
 		size_t _size = getSize();
-		for (JsonTypes* t : _array) {
+		for (JsonTypes* t : array) {
 			arrayString += tab + t->serialize(indent);
 			if ((--_size) > 0) {
 				arrayString += ", ";
@@ -35,15 +35,15 @@ namespace jsonparser {
 	}
 
 	size_t JsonArray::getSize() {
-		return _array.size();
+		return array.size();
 	}
 
 	JsonTypes* JsonArray::get(int index) {
-		return _array[index];
+		return array[index];
 	}
 
 	void JsonArray::add(JsonTypes* jsonType) {
-		_array.push_back(jsonType);
+		array.push_back(jsonType);
 	}
 
 }

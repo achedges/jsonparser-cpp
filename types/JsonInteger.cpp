@@ -7,15 +7,15 @@
 namespace jsonparser {
 
 	JsonInteger::JsonInteger(int value) {
-		_value = value;
+		this->value = value;
 	}
 
 	string JsonInteger::serialize(int indent) {
-		return std::to_string(_value);
+		return std::to_string(value);
 	}
 
 	JsonFloat* JsonInteger::getFloatValue() {
-		return new JsonFloat((double)_value);
+		return new JsonFloat((double)value);
 	}
 
 	JsonInteger* JsonInteger::getIntegerValue() {

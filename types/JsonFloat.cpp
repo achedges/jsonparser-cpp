@@ -7,11 +7,11 @@
 namespace jsonparser {
 
 	JsonFloat::JsonFloat(double value) {
-		_value = value;
+		this->value = value;
 	}
 
 	string JsonFloat::serialize(int indent) {
-		return std::to_string(_value);
+		return std::to_string(value);
 	}
 
 	JsonFloat* JsonFloat::getFloatValue() {
@@ -19,7 +19,7 @@ namespace jsonparser {
 	}
 
 	JsonInteger* JsonFloat::getIntegerValue() {
-		return new JsonInteger((int)_value);
+		return new JsonInteger((int)value);
 	}
 
 }

@@ -11,10 +11,16 @@ add_library(jsonparser
         types/JsonInteger.cpp
         types/JsonNull.cpp
         types/JsonObject.cpp
-        types/JsonString.cpp)
+        types/JsonString.cpp
+        jsonparser.cpp
+        jsonparser.h)
 
 link_libraries(jsonparser)
 
-add_executable(tests
+add_executable(test-serializers
         jsonparser
         tests/serializers.cpp)
+
+add_executable(test-parser
+        jsonparser
+        tests/parser.cpp)

@@ -7,15 +7,15 @@
 namespace jsonparser {
 
 	JsonString::JsonString(string* value) {
-		_value = *value;
+		this->value = *value;
 	}
 
 	JsonString::JsonString(const string & value) {
-		_value = value;
+		this->value = value;
 	}
 
 	string JsonString::serialize(int indent) {
-		return '"' + _value + '"';
+		return '"' + value + '"';
 	}
 
 	JsonString* JsonString::getStringValue() {

@@ -14,7 +14,7 @@ namespace jsonparser {
 
 		string tab = indent > 0 ? string(indent, '\t') : "";
 		size_t _size = getSize();
-		for (auto & entry : _map) {
+		for (auto & entry : map) {
 			objectString += tab + "\"" + entry.first + "\": " + entry.second->serialize(indent > 0 ? indent + 1 : 0);
 			if ((--_size) > 0) {
 				objectString += ", ";
@@ -35,32 +35,32 @@ namespace jsonparser {
 	}
 
 	size_t JsonObject::getSize() {
-		return _map.size();
+		return map.size();
 	}
 
 	bool JsonObject::contains(string* key) {
-		return _map.find(*key) != _map.end();
+		return map.find(*key) != map.end();
 	}
 
 	JsonTypes* JsonObject::get(string* key) {
-		return _map[*key];
+		return map[*key];
 	}
 
 	JsonTypes* JsonObject::get(const string & key) {
-		return _map[key];
+		return map[key];
 	}
 
 	void JsonObject::set(string* key, JsonTypes* type) {
-		_map[*key] = type;
+		map[*key] = type;
 	}
 
 	void JsonObject::set(const string & key, JsonTypes* type) {
-		_map[key] = type;
+		map[key] = type;
 	}
 
 	std::set<string> JsonObject::getKeys() {
 		std::set<string> keys;
-		for (auto& p : _map) {
+		for (auto& p : map) {
 			keys.insert(p.first);
 		}
 		return keys;

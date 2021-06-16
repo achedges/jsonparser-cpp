@@ -7,11 +7,11 @@
 namespace jsonparser {
 
 	JsonBoolean::JsonBoolean(bool value) {
-		_value = value;
+		this->value = value;
 	}
 
 	string JsonBoolean::serialize(int indent) {
-		return _value ? "true" : "false";
+		return value ? "true" : "false";
 	}
 
 	JsonBoolean* JsonBoolean::getBoolValue() {
