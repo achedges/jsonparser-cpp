@@ -44,21 +44,22 @@ namespace jsonparser {
 
 	// private implementations
 	void JsonParser::tokenize() {
-		std::set<char> whitespace { ' ', '\t', '\n', '\r' };
+		std::set<char> discards {' ', '\t', '\n', '\r' };
 		std::set<char> tokens { '{', '}', '[', ']', ',', ':' };
-		std::set<char> litterm { ',', ']', '}' };
 
 		i = 0;
-		while (input[i] != '{' && input[i] != '[')
-			i++;
-
 		while (i < n) {
-			if (whitespace.find(input[i]) != whitespace.end()) {
+			// discard?
+			if (discards.find(input[i]) != discards.end()) {
 				i++;
 				continue;
-			} else if (tokens.find(input[i]) != tokens.end()) {
+			}
+			// punctuation/token literal?
+			else if (tokens.find(input[i]) != tokens.end()) {
 				tokenStream.push_back(new JsonToken(input[i], input[i]));
-			} else if (input[i] == '"') {
+			}
+			// identifier?
+			else if (input[i] == '"') {
 				std::string id;
 				i++;
 				while (i < n) {
@@ -74,13 +75,15 @@ namespace jsonparser {
 				}
 
 				tokenStream.push_back(new JsonToken("ID", id));
-			} else {
+			}
+			// must be a literal...
+			else {
 				std::string lit;
 				while (i < n) {
-					if (litterm.find(input[i]) != litterm.end()) {
+					if (input[i] == ',' || input[i] == ']' || input[i] == '}') {
 						i--; // back up so we can capture the ending token in the stream
 						break;
-					} else if (whitespace.find(input[i]) == whitespace.end()) {
+					} else if (discards.find(input[i]) == discards.end()) {
 						lit += input[i];
 					}
 
