@@ -3,26 +3,13 @@
 //
 
 #include <iostream>
+#include "runtests.h"
 #include "../jsonparser.h"
 
 using namespace jsonparser;
 
-int testArrayParser();
-int testObjectParser();
-
-int main() {
-	std::cout << "Starting JSON Parser Tests: Parser" << std::endl;
-
-	int failcnt = 0;
-
-	failcnt += testArrayParser();
-	failcnt += testObjectParser();
-
-	return failcnt;
-}
-
 int testArrayParser() {
-	std::cout << "- Array Parser....";
+	std::cout << "- Arrays" << std::string(TEST_LABEL_PREFIX_LEN - 6, '.');
 
 	std::string jsonArray = R"([ "string value", 33, 5.2, true, false, null, { "object key": "object value" } ])";
 	auto parser = new JsonParser(jsonArray);
@@ -84,7 +71,7 @@ int testArrayParser() {
 }
 
 int testObjectParser() {
-	std::cout << "- Object Parser...";
+	std::cout << "- Objects" << std::string(TEST_LABEL_PREFIX_LEN - 7, '.');
 
 	std::string input = R"({ "string": "value", "int": 12, "float": 77.2, "true": true, "false": false, "null": null, "array": [ 1, 2 ], "object": { "nested": "value" } })";
 	auto parser = new JsonParser(input);

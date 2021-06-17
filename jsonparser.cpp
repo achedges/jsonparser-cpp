@@ -17,7 +17,7 @@ namespace jsonparser {
 		this->text = text;
 	}
 
-	std::string JsonToken::toString() {
+	std::string JsonToken::toString() const {
 		return (token == text) ? token : token + ": " + text;
 	}
 
@@ -28,14 +28,13 @@ namespace jsonparser {
 		i = 0;
 	}
 
-	// parser function declarations
 	JsonTypes* JsonParser::parse() {
 		tokenize();
 		i = 0;
 
-		if (stream[0]->token == "{") {
+		if (tokenStream[0]->token == "{") {
 			return parseObject();
-		} else if (stream[0]->token == "[") {
+		} else if (tokenStream[0]->token == "[") {
 			return parseArray();
 		} else {
 			std::cout << "JSON documents must start with '{' or '['" << std::endl;
@@ -58,7 +57,7 @@ namespace jsonparser {
 				i++;
 				continue;
 			} else if (tokens.find(input[i]) != tokens.end()) {
-				stream.push_back(new JsonToken(input[i], input[i]));
+				tokenStream.push_back(new JsonToken(input[i], input[i]));
 			} else if (input[i] == '"') {
 				std::string id;
 				i++;
@@ -74,7 +73,7 @@ namespace jsonparser {
 					i++;
 				}
 
-				stream.push_back(new JsonToken("ID", id));
+				tokenStream.push_back(new JsonToken("ID", id));
 			} else {
 				std::string lit;
 				while (i < n) {
@@ -88,7 +87,7 @@ namespace jsonparser {
 					i++;
 				}
 
-				stream.push_back(new JsonToken("LIT", lit));
+				tokenStream.push_back(new JsonToken("LIT", lit));
 			}
 
 			i++;
@@ -97,8 +96,8 @@ namespace jsonparser {
 
 	JsonToken* JsonParser::nextToken() {
 		i++;
-		if (i < stream.size()) {
-			return stream[i];
+		if (i < tokenStream.size()) {
+			return tokenStream[i];
 		} else {
 			return new JsonToken("EOF", "EOF");
 		}

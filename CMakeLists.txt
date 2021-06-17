@@ -17,10 +17,10 @@ add_library(jsonparser
 
 link_libraries(jsonparser)
 
-add_executable(test-serializers
+add_executable(runtests
         jsonparser
-        tests/serializers.cpp)
-
-add_executable(test-parser
-        jsonparser
-        tests/parser.cpp)
+        tests/runtests.cpp
+        tests/runtests.h
+        tests/parser.cpp
+        tests/serializers.cpp
+        tests/tokenizer.cpp)

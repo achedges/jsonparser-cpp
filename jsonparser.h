@@ -17,7 +17,7 @@ namespace jsonparser {
 		std::string text;
 		JsonToken(const char & token, const char & text);
 		JsonToken(const std::string & token, const std::string & text);
-		std::string toString();
+		[[nodiscard]] std::string toString() const;
 	};
 
 	class JsonParser {
@@ -25,7 +25,6 @@ namespace jsonparser {
 		std::string input;
 		size_t n = 0;
 		size_t i = 0;
-		std::vector<JsonToken*> stream;
 
 		void tokenize();
 		JsonToken* nextToken();
@@ -33,6 +32,8 @@ namespace jsonparser {
 		JsonTypes* parseArray();
 		JsonTypes* parseObject();
 	public:
+		std::vector<JsonToken*> tokenStream;
+
 		explicit JsonParser(const std::string & jsonString);
 		JsonTypes* parse();
 	};

@@ -3,36 +3,13 @@
 //
 
 #include <iostream>
+#include "runtests.h"
 #include "../types/JsonTypes.h"
-
-int testJsonArray();
-int testJsonBoolean();
-int testJsonFloat();
-int testJsonInteger();
-int testJsonNull();
-int testJsonObject();
-int testJsonString();
 
 using namespace jsonparser;
 
-int main() {
-	std::cout << "Starting JSON Parser Tests: Serializers" << std::endl;
-
-	int failcnt = 0;
-
-	failcnt += testJsonArray();
-	failcnt += testJsonBoolean();
-	failcnt += testJsonFloat();
-	failcnt += testJsonInteger();
-	failcnt += testJsonNull();
-	failcnt += testJsonObject();
-	failcnt += testJsonString();
-
-	return failcnt;
-}
-
 int testJsonArray() {
-	std::cout << "- JsonArray.....";
+	std::cout << "- JsonArray" << std::string(TEST_LABEL_PREFIX_LEN - 9, '.');
 
 	auto a = new JsonArray();
 	a->add(new JsonString("test string one"));
@@ -51,7 +28,7 @@ int testJsonArray() {
 }
 
 int testJsonBoolean() {
-	std::cout << "- JsonBoolean...";
+	std::cout << "- JsonBoolean" << std::string(TEST_LABEL_PREFIX_LEN - 11, '.');
 
 	auto t = new JsonBoolean(true);
 	auto f = new JsonBoolean(false);
@@ -72,7 +49,7 @@ int testJsonBoolean() {
 }
 
 int testJsonFloat() {
-	std::cout << "- JsonFloat.....";
+	std::cout << "- JsonFloat" << std::string(TEST_LABEL_PREFIX_LEN - 9, '.');
 
 	auto f = new JsonFloat(9.876);
 	std::string result = f->serialize(0);
@@ -87,7 +64,7 @@ int testJsonFloat() {
 }
 
 int testJsonInteger() {
-	std::cout << "- JsonInteger...";
+	std::cout << "- JsonInteger" << std::string(TEST_LABEL_PREFIX_LEN - 11, '.');
 
 	auto i = new JsonInteger(312);
 	std::string result = i->serialize(0);
@@ -102,7 +79,7 @@ int testJsonInteger() {
 }
 
 int testJsonNull() {
-	std::cout << "- JsonNull......";
+	std::cout << "- JsonNull" << std::string(TEST_LABEL_PREFIX_LEN - 8, '.');
 
 	auto n = new JsonNull();
 	std::string result = n->serialize(0);
@@ -117,7 +94,7 @@ int testJsonNull() {
 }
 
 int testJsonObject() {
-	std::cout << "- JsonObject....";
+	std::cout << "- JsonObject" << std::string(TEST_LABEL_PREFIX_LEN - 10, '.');
 
 	auto o = new JsonObject();
 	o->set("int-value", new JsonInteger(123));
@@ -138,7 +115,7 @@ int testJsonObject() {
 }
 
 int testJsonString() {
-	std::cout << "- JsonString....";
+	std::cout << "- JsonString" << std::string(TEST_LABEL_PREFIX_LEN - 10, '.');
 
 	auto s = new JsonString("some longer string value");
 	std::string result = s->serialize(0);
